@@ -56,6 +56,9 @@ export default class App extends Component {
     return (
       <SafeAreaView style={styles.container}>
         <Swipe
+          keyProp="gameId"
+          data={games}
+      
           data={games}
           keyProp="gameId"
           renderCard={this.renderCards}
