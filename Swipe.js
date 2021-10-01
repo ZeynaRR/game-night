@@ -43,13 +43,13 @@ class Swipe extends Component {
     this.state = { panResponder, position, index: 0 };
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.data !== this.props.data) {
       this.setState({ index: 0 });
     }
   }
 
-  componentWillUpdate() {
+  UNSAFE_componentWillUpdate() {
     UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true);
     LayoutAnimation.spring();
   }
@@ -58,7 +58,8 @@ class Swipe extends Component {
     const x = direction === 'right' ? SCREEN_WIDTH : -SCREEN_WIDTH;
     Animated.timing(this.state.position, {
       toValue: { x, y: 0 },
-      duration: SWIPE_OUT_DURATION
+      duration: SWIPE_OUT_DURATION,
+      useNativeDriver: false,
     }).start(() => this.onSwipeComplete(direction));
   }
 
