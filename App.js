@@ -4,85 +4,107 @@ import {
   Text,
   View,
   StyleSheet,
-  Platform,
-  Image
+  FlatList,
+  Image,
+  Dimensions,
 } from 'react-native';
 import { Card, Button, Icon } from 'react-native-elements';
-import Swipe from './Swipe';
-import games from './data';
 
-export default class App extends Component {
 
-  renderCards = (game) => {
-    return (
-      <Card title={game.gameTitle} titleStyle={{ fontSize: 14 }}>
-        <View style={{ height: 200 }}>
-          <Image
-            source={require('./assets/ludo.png')}
-            style={{ width: '100%', height: 200 }}
-          />
-        </View>
-        <View style={styles.detailWrapper}>
-          <Text>{game.day}</Text>
-          <Text>{game.time}</Text>
-          <Text> {game.numberOfPlayers} players</Text>
-         
-        </View>
-        <Text numberOfLines={4}>
-          {game.description.replace(/<b>/g, '').replace(/<\/b>/g, '')}
-        </Text>
-      </Card>
-    );
-  }
-  renderNoMoreCards = () => {
-    return (
-      <Card title="No More cards">
-        <Button
-          title="Do something"
-          large
-          icon={{ name: 'my-location' }}
-          backgroundColor="#03A9F4"
-        />
 
-      <Image
-        source={require('./assets/waiting-cards.gif')}
-        style={{ width: '100%', height: 200 }}
-          />
-      </Card>
-    );
-  };
+import
+ MaterialCommunityIcons
+from 'react-native-vector-icons/MaterialCommunityIcons';
 
-  render() {
-    return (
-      <SafeAreaView style={styles.container}>
-        <Swipe
-          keyProp="gameId"
-          data={games}
-      
-          data={games}
-          keyProp="gameId"
-          renderCard={this.renderCards}
-          renderNoMoreCards={this.renderNoMoreCards}
-        />
-      </SafeAreaView>
-    );
-  }
+import {
+  NavigationContainer
+} from '@react-navigation/native';
+import {
+  createStackNavigator
+} from '@react-navigation/stack';
+import {
+  createBottomTabNavigator
+} from '@react-navigation/bottom-tabs';
+
+import HomeScreen from './Home';
+import ProfileScreen from './ProfileScreen';
+
+const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
+
+function HomeStack() {
+  return (
+      <Stack.Navigator
+        initialRouteName="Home"
+        screenOptions={{
+          headerStyle: { backgroundColor: '#42f44b' },
+          headerTintColor: '#fff',
+          headerTitleStyle: { fontWeight: 'bold' }
+        }}>
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}/>
+      </Stack.Navigator>
+  );
+}
+function ProfileStack() {
+  return (
+    <Stack.Navigator
+      initialRouteName="Profile"
+      screenOptions={{
+        headerStyle: { backgroundColor: '#42f44b' },
+        headerTintColor: '#fff',
+        headerTitleStyle: { fontWeight: 'bold' }
+      }}>
+      <Stack.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{ title: 'Profile Page' }}/>
+    </Stack.Navigator>
+  );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff'
-  },
-  statusStyle: {
-    padding: 15,
-    flexDirection: 'row',
-    justifyContent: 'space-around'
-  },
-  detailWrapper: {
-    marginTop: 10,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginBottom: 10
-  }
-});
+const SCREEN_HEIGHT = Dimensions.get('window').height; 
+
+function App() {
+  return (
+    <NavigationContainer>
+      <Tab.Navigator
+        initialRouteName="Feed"
+        tabBarOptions={{
+          activeTintColor: '#42f44b',
+        }}>
+          
+        <Tab.Screen
+          name="Game Night"
+          component={HomeStack}
+          options={{
+            tabBarLabel: 'Home',
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons
+                name="home"
+                color={color}
+                size={size}
+              />
+            ),
+          }}  />
+          <Tab.Screen
+          name="ProfileStack"
+          component={ProfileStack}
+          options={{
+            tabBarLabel: 'Profile',
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons
+                name="profile"
+                color={color}
+                size={size}
+              />
+            ),
+          }} />
+          </Tab.Navigator>
+          
+    </NavigationContainer>
+    
+  );
+}
+export default App;
