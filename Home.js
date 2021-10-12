@@ -43,7 +43,7 @@ class Home extends Component{
         return (
           <Card title="No More cards">
             <Button
-              title="Do something"
+              title="You've swipe through all the game nights !"
               large
               icon={{ name: 'my-location' }}
               backgroundColor="#03A9F4"
