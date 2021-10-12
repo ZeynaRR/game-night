@@ -9,7 +9,10 @@ import {
   Platform
 } from 'react-native';
 
+
+
 const SCREEN_WIDTH = Dimensions.get('window').width;
+const SCREEN_HEIGHT = Dimensions.get('window').height;
 const SWIPE_THRESHOLD = 0.25 * SCREEN_WIDTH;
 const SWIPE_OUT_DURATION = 250;
 
@@ -103,7 +106,7 @@ class Swipe extends Component {
         return (
           <Animated.View
             key={item[this.props.keyProp]}
-            style={[this.getCardStyle(), styles.cardStyle, { zIndex: 99 }]}
+            style={[this.getCardStyle(), /*styles.cardStyle*/, { zIndex: 99 }, {marginBottom:100}]}
             {...this.state.panResponder.panHandlers}
           >
             {this.props.renderCard(item)}
@@ -113,7 +116,7 @@ class Swipe extends Component {
       return (
         <Animated.View
           key={item[this.props.keyProp]}
-          style={[styles.cardStyle, { top: 20 * (i - this.state.index), zIndex: 5 }]}
+          style={[styles.cardStyle, { top: 20 * (i - this.state.index), zIndex: 5 } ]}
         >
           {this.props.renderCard(item)}
         </Animated.View>
@@ -134,8 +137,14 @@ class Swipe extends Component {
 
 const styles = {
   cardStyle: {
-    position: 'absolute',
-    width: SCREEN_WIDTH
+  position: 'absolute',
+  width: SCREEN_WIDTH,
+  borderRadius: 25, 
+  overflow:'hidden',
+  height: SCREEN_HEIGHT/2
+  
+   
+    
   }
 };
 
