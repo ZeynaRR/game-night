@@ -7,6 +7,8 @@ I used this really cool tutorial to start the project, you can read it too to un
 
 You should download Expo https://expo.dev/tools#cli and have it on your phone if you want to test the app directly there.
 
+You will also have to install some libraries using the command npm install nameOfTheLibrary.
+
 Do not hesitate if you have any questions about how to install something or if you encounter errors !
 
 
