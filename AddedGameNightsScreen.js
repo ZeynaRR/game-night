@@ -29,7 +29,7 @@ const AddedGameNightsScreen = () => {
             textAlign: 'center',
             color: 'grey'
           }}>
-          React Native Bottom Navigation
+         
         </Text>
         <Text
           style={{
@@ -37,7 +37,7 @@ const AddedGameNightsScreen = () => {
             textAlign: 'center',
             color: 'grey'
           }}>
-          www.aboutreact.com
+       
         </Text>
       </View>
     </SafeAreaView>

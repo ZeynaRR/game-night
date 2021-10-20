@@ -127,7 +127,6 @@ function ProfileStack() {
   );
 }
 
-const SCREEN_HEIGHT = Dimensions.get('window').height; 
 
 function App() {
   return (

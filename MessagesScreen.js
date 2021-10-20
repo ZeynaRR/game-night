@@ -4,7 +4,7 @@
 import * as React from 'react';
 import { View, Text, SafeAreaView } from 'react-native';
 
-const ProfileScreen = () => {
+const MessagesScreen = () => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={{ flex: 1, padding: 16 }}>
@@ -29,7 +29,6 @@ const ProfileScreen = () => {
             textAlign: 'center',
             color: 'grey'
           }}>
-          React Native Bottom Navigation
         </Text>
         <Text
           style={{
@@ -37,10 +36,9 @@ const ProfileScreen = () => {
             textAlign: 'center',
             color: 'grey'
           }}>
-          www.aboutreact.com
         </Text>
       </View>
     </SafeAreaView>
   );
 }
-export default ProfileScreen;
+export default MessagesScreen;
